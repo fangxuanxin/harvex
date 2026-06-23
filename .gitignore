@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.coverage
+htmlcov/
+build/
+dist/
+
+# 本地数据与日志（框架自身仓库不存放运行产物）
+logs/*.log
+*.db
+*.db-wal
+*.db-shm
+database_backup/
+
+# 密钥
+.env.local
+.env
+
+# 系统
+.DS_Store
+.playwright-mcp/
