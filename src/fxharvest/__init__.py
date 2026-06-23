@@ -19,7 +19,10 @@ from .core.errors import (
     RecordValidationError,
     SinkError,
 )
+from .core.pipeline import Pipeline, SourceResult
 from .core.record import HarvestRecord
+from .core.registry import SourceRegistry
+from .core.runner import RunReport, run_sources
 from .core.source import BaseSource, SourceProfile
 from .storage.sink import Sink, WriteResult
 
@@ -30,6 +33,11 @@ __all__ = [
     "SourceProfile",
     "SourceContext",
     "HarvestRecord",
+    "SourceRegistry",
+    "Pipeline",
+    "SourceResult",
+    "run_sources",
+    "RunReport",
     "Sink",
     "WriteResult",
     "FxHarvestError",
