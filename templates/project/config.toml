@@ -1,0 +1,21 @@
+# fxharvest 下游项目配置。改成你的真实数据源与通知方式。
+
+[http]
+timeout = 15.0          # 单次请求超时（秒）
+retry_attempts = 3      # 失败重试次数
+
+[storage]
+backup_keep = 10        # 写库备份保留份数
+table = "records"       # 业务表名
+
+[notify]
+kind = "feishu"         # bark / feishu / serverchan
+url = "${FEISHU_URL}"   # 从 .env.local 取，避免明文入库；留空则不告警
+
+# —— 数据源开关与调度 —— 每个源一段 [sources.<slug>]
+[sources.example]
+enabled = true
+schedule = "10:00,17:00"   # 供 gen-launchd / gen-cron 生成系统调度
+channel = "demo"
+# 源特有选项可任意加，会进入 source 的 options：
+# location = "上海"

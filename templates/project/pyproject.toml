@@ -1,0 +1,18 @@
+[project]
+name = "my-harvest-project"
+version = "0.1.0"
+description = "基于 fxharvest 的数据采集项目"
+requires-python = ">=3.11"
+dependencies = [
+    "fxharvest",
+    # 按需启用扩展：
+    # "fxharvest[browser]",   # 渲染型站点（playwright）
+    # "fxharvest[llm]",       # LLM 翻译/增强（openai）
+]
+
+# 本地路径引用共享框架，不发布
+[tool.uv.sources]
+fxharvest = { path = "../../fxharvest", editable = true }
+
+[tool.fxharvest]
+# 预留：项目级框架配置（当前主要配置在 config.toml）
