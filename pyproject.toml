@@ -38,10 +38,10 @@ tui = []          # 本地控制面板走 stdlib，无第三方依赖
 dev = ["pytest>=8.0", "pytest-cov>=5.0"]
 
 [project.urls]
-Homepage = "https://github.com/stephen-fang/harvex"
-Repository = "https://github.com/stephen-fang/harvex"
-Issues = "https://github.com/stephen-fang/harvex/issues"
-Changelog = "https://github.com/stephen-fang/harvex/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/fangxuanxin/harvex"
+Repository = "https://github.com/fangxuanxin/harvex"
+Issues = "https://github.com/fangxuanxin/harvex/issues"
+Changelog = "https://github.com/fangxuanxin/harvex/blob/main/CHANGELOG.md"
 
 [project.scripts]
 # CLI 入口：harvex run / list / health / gen-launchd / web / tui

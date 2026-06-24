@@ -36,4 +36,4 @@
 - 42 个测试（零真实网络 / OpenAI / 浏览器）。
 - `py.typed` 类型标记，核心零重依赖。
 
-[0.1.0]: https://github.com/stephen-fang/harvex/releases/tag/v0.1.0
+[0.1.0]: https://github.com/fangxuanxin/harvex/releases/tag/v0.1.0
