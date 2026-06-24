@@ -1,0 +1,9 @@
+kind = "http"
+name = "传统 HTTP 采集"
+version = "0.1.0"
+description = "用 httpx 直接请求，适合 JSON API 与静态/服务端渲染页面。复用框架带重试的 HttpClient。"
+entry = "acquirer.py"
+class_name = "HttpAcquirer"
+requires = []                 # 仅核心依赖（httpx 已在核心内）
+assets = []
+platforms = ["any"]

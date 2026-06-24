@@ -1,0 +1,9 @@
+kind = "playwright_headless"
+name = "无头浏览器渲染采集"
+version = "0.1.0"
+description = "用 Playwright 无头 Chromium 渲染 JS 重的页面，返回渲染后 HTML。适合 SPA / 动态加载。"
+entry = "acquirer.py"
+class_name = "PlaywrightHeadlessAcquirer"
+requires = ["playwright>=1.42"]   # 需 uv add 'harvex[browser]' 并 playwright install chromium
+assets = ["assets/inject.js"]
+platforms = ["any"]

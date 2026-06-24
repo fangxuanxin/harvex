@@ -1,0 +1,9 @@
+kind = "applescript_browser"
+name = "macOS 默认浏览器操控注入采集"
+version = "0.1.0"
+description = "macOS 专用：用 AppleScript（osascript）操控用户当前/默认浏览器，导航并注入 JS 取数。复用用户已登录的真实会话，天然绕过多数反爬。"
+entry = "acquirer.py"
+class_name = "AppleScriptBrowserAcquirer"
+requires = []                 # 走系统 osascript，无 pip 依赖
+assets = ["assets/control_browser.applescript", "assets/inject.js"]
+platforms = ["macos"]

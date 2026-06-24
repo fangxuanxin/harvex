@@ -1,6 +1,6 @@
 [project]
 name = "harvex"
-version = "0.1.1"
+version = "0.2.0"
 description = "The data-harvesting foundation for the AI era — a zero-boilerplate framework for AI agents and vibecoding"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -33,6 +33,7 @@ dependencies = [
 # 可选扩展：按需安装，核心永不强拉这些重依赖
 browser = ["playwright>=1.42"]
 llm = ["openai>=1.30"]
+parse = ["parsel>=1.8"]   # CSS/XPath 选择器解析助手
 web = []          # 只读浏览 UI 走 stdlib http.server，无第三方依赖
 tui = []          # 本地控制面板走 stdlib，无第三方依赖
 dev = ["pytest>=8.0", "pytest-cov>=5.0"]

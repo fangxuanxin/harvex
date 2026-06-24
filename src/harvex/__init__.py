@@ -23,10 +23,18 @@ from .core.pipeline import Pipeline, SourceResult
 from .core.record import HarvestRecord
 from .core.registry import SourceRegistry
 from .core.runner import RunReport, run_sources
+from .acquire.base import Acquirer, AcquireContext, AcquireResult
+from .acquire.registry import PluginRegistry, load_acquirer
 from .core.source import BaseSource, SourceProfile
 from .storage.sink import Sink, WriteResult
 
-__version__ = "0.1.0"
+# 版本号以已安装包的元数据为准（与 pyproject 单一来源同步，避免硬编码漂移）
+try:
+    from importlib.metadata import version as _pkg_version
+
+    __version__ = _pkg_version("harvex")
+except Exception:  # noqa: BLE001 源码树未安装时的兜底
+    __version__ = "0.0.0+unknown"
 
 __all__ = [
     "BaseSource",
@@ -40,6 +48,11 @@ __all__ = [
     "RunReport",
     "Sink",
     "WriteResult",
+    "Acquirer",
+    "AcquireContext",
+    "AcquireResult",
+    "PluginRegistry",
+    "load_acquirer",
     "HarvexError",
     "ConfigError",
     "FetchError",

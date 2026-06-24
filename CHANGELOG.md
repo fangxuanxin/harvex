@@ -2,6 +2,25 @@
 
 This project follows [Semantic Versioning](https://semver.org/).
 
+## [0.2.0] - 未发布（待审核）
+
+### Added
+
+- **采集方式插件层 `harvex.acquire`**：可插拔的「怎么取回原始数据」策略，与 Source 的「解析」解耦。
+  - `Acquirer` 基类（生命周期 setup→acquire→teardown）+ `AcquireContext` / `AcquireResult`。
+  - `PluginRegistry` 从 `assets/plugins/` 发现、加载、实例化插件；`plugin.toml` 清单。
+  - 自带三种采集方式插件（**铺垫骨架**，`acquire()` 留待按目标接口补全）：
+    `http`（传统 httpx）、`playwright_headless`（无头浏览器）、`applescript_browser`（macOS 操控默认浏览器 + JS 注入，自带 .applescript / inject.js 模板）。
+- **解析扩展 `harvex[parse]`**：基于 parsel 的 CSS/XPath 选择器助手（`selector` / `css_all` / `css_first`）。
+
+### Fixed
+
+- Web 浏览 UI 品牌残留 `fxharvest` → `harvex`。
+
+### Changed
+
+- `__version__` 改为从已安装包元数据动态读取，与 pyproject 单一来源同步。
+
 ## [0.1.1] - 2026-06-24
 
 ### Changed
@@ -49,3 +68,4 @@ This project follows [Semantic Versioning](https://semver.org/).
 
 [0.1.0]: https://github.com/fangxuanxin/harvex/releases/tag/v0.1.0
 [0.1.1]: https://github.com/fangxuanxin/harvex/releases/tag/v0.1.1
+[0.2.0]: https://github.com/fangxuanxin/harvex/compare/v0.1.1...main
