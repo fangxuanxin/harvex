@@ -1,6 +1,17 @@
 # Changelog
 
-本项目遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
+This project follows [Semantic Versioning](https://semver.org/).
+
+## [0.1.1] - 2026-06-24
+
+### Changed
+
+- Docs are now English-first, with Simplified Chinese (`README.zh-CN.md`) and Japanese (`README.ja.md`) as alternates.
+- Package description switched to English.
+
+### Removed
+
+- Removed personal contact details (author email) from package metadata.
 
 ## [0.1.0] - 2026-06-24
 
@@ -37,3 +48,4 @@
 - `py.typed` 类型标记，核心零重依赖。
 
 [0.1.0]: https://github.com/fangxuanxin/harvex/releases/tag/v0.1.0
+[0.1.1]: https://github.com/fangxuanxin/harvex/releases/tag/v0.1.1

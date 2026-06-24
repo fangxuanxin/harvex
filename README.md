@@ -1,21 +1,19 @@
 # harvex
 
-**AI 时代的数据采集基座** —— 为 AI agent 与 vibecoding 打造的零样板数据采集框架。
+**English** · [简体中文](README.zh-CN.md) · [日本語](README.ja.md)
 
-让 AI（或你自己 vibecoding）只需写「**怎么抓、怎么解析**」这一件事，其余全部交给框架：
-并发调度、字段收口、写库去重、元数据流水、HTTP 重试、日志、告警、数据健康检查、
-定时调度、Web 浏览、LLM 翻译增强、TUI 控制面板。
+**The data-harvesting foundation for the AI era** — a zero-boilerplate framework for AI agents and vibecoding.
+
+Let the AI (or your own vibecoding) write only the one thing it's good at — *how to fetch, how to parse* — and leave everything else to the framework: concurrent scheduling, field consolidation, deduplicated writes, run metadata, HTTP retries, logging, alerting, data-health checks, scheduling, a web browser UI, LLM translation/enrichment, and a TUI control panel.
 
 ```bash
-pip install harvex          # 核心零重依赖
-pip install "harvex[web,llm,browser,tui]"   # 按需启用扩展
+pip install harvex                              # core, zero heavy deps
+pip install "harvex[web,llm,browser,tui]"       # opt into extras as needed
 ```
 
-## 为什么是「AI 时代的采集基座」
+## Why "a harvesting foundation for the AI era"
 
-让 LLM 写爬虫时，模型最擅长的是「这个页面/接口怎么解析成结构化数据」，最不擅长、
-也最容易写错的是周边工程：重试退避、并发隔离、增量去重、schema 漂移、调度、可观测。
-harvex 把后者全部沉淀成稳定基座，给 AI 留下一个**极窄、极稳的契约面**：
+When an LLM writes a scraper, the model is great at *"how do I turn this page/endpoint into structured data"* and bad at — and most likely to get wrong — the surrounding engineering: retry/backoff, concurrency isolation, incremental dedup, schema drift, scheduling, observability. harvex turns all of that into a stable foundation and gives the AI a **narrow, rock-solid contract surface**:
 
 ```python
 from harvex import BaseSource, SourceProfile
@@ -28,62 +26,61 @@ class GithubTrending(BaseSource):
 
     def parse(self, raw):
         for item in raw["items"]:
-            yield {"标题": item["name"], "star": item["stars"]}
+            yield {"title": item["name"], "stars": item["stars"]}
 ```
 
-AI 只要产出这样一个类，`harvex run` 就能跑通采集→校验→去重→入库→流水→健康检查全链路。
-新增字段不会撑爆主表（自动折叠进 extra 列），一个源挂掉不影响整轮，脏数据写库前被拦截。
+The AI only needs to produce a class like this, and `harvex run` drives the whole chain: fetch → validate → dedup → store → run metadata → health check. New fields won't blow up your main table (they fold into an `extra` column automatically), one failing source won't take down the round, and dirty data is rejected before it hits the database.
 
-## 设计原则
+## Design principles
 
-- **核心零重依赖**：core 只依赖 `pydantic` / `httpx` / `tenacity`。`playwright`、`openai`、Web、TUI 都是按需安装的 `extras`。
-- **字段收口是框架契约**：用 `HarvestRecord`（pydantic v2）守住「不让主表变稀疏矩阵」的纪律，未声明字段自动折叠，脏数据写库前拦截。
-- **故障隔离**：一个源挂掉不影响整轮抓取。
-- **存储先 SQLite，签名预留 Sink 抽象**：开箱即用，又留好扩展接入点。
-- **调度与 Web 解耦**：CLI + 系统 launchd/cron，不把定时寄生在 Web 进程里。
+- **Zero heavy core deps**: the core depends only on `pydantic` / `httpx` / `tenacity`. `playwright`, `openai`, web, and TUI are all `extras` installed on demand.
+- **Field consolidation as a contract**: `HarvestRecord` (pydantic v2) enforces the "don't let the main table become a sparse matrix" discipline — undeclared fields fold automatically, dirty data is caught before writing.
+- **Fault isolation**: one failing source never breaks the whole round.
+- **SQLite first, Sink abstraction reserved**: works out of the box, with a clean extension point.
+- **Scheduling decoupled from the web**: CLI + system launchd/cron, instead of parasitizing a timer thread inside the web process.
 
-## 分层
+## Layers
 
 ```
-sources/*.py (你/AI 写)      BaseSource 子类：fetch() + parse()
+sources/*.py (you / AI write)   BaseSource subclass: fetch() + parse()
      ↓ raw → list[dict]
-core/pipeline               校验(pydantic) → 收口(extra 折叠) → 写库 → 流水 → 健康检查
+core/pipeline                   validate(pydantic) → consolidate(extra fold) → store → metadata → health
      ↓
-storage/sqlite_sink         建表/补列 + upsert 去重 + 轮级备份
+storage/sqlite_sink             create/alter table + upsert dedup + per-round backup
      ↓
-SQLite 业务库 + 元信息库
+SQLite business DB + metadata DB
      ↓ (extras)
-extras/web  只读浏览    extras/llm  翻译润色    extras/tui  控制面板
-统筹：core/runner（并发） + cli（harvex run / health / gen-launchd）
+extras/web  browse    extras/llm  translate    extras/tui  control panel
+orchestration: core/runner (concurrency) + cli (harvex run / health / gen-launchd)
 ```
 
-## 新项目骨架
+## New project skeleton
 
 ```
 my_project/
-├── config.toml         # 数据源开关/调度/筛选/通知
-├── .env.local          # 密钥（openai key、webhook url）
-├── fields.py           # 你的 HarvestRecord 子类 —— 标准字段
-├── sources/            # 一源一文件，只写 fetch/parse
+├── config.toml         # source toggles / schedule / filters / notifications
+├── .env.local          # secrets (openai key, webhook url)
+├── fields.py           # your HarvestRecord subclass — standard fields
+├── sources/            # one file per source, just fetch/parse
 └── database/  logs/
 ```
 
-完整可跑模板见仓库 [`templates/project/`](templates/project)。
+A complete runnable template lives in [`templates/project/`](templates/project).
 
 ## CLI
 
 ```bash
-harvex list                 # 列出已发现的数据源
-harvex run --all            # 跑一轮全部源
-harvex run gh_trending      # 跑指定源
-harvex health               # 数据健康检查（归零/骤降）
-harvex gen-launchd          # 生成 macOS launchd 定时配置
-harvex gen-cron             # 生成 crontab 行
-harvex web                  # 启动只读浏览 UI（需 [web]）
-harvex tui                  # 启动本地控制面板（需 [tui]）
+harvex list                 # list discovered sources
+harvex run --all            # run one round over all sources
+harvex run gh_trending      # run specific sources
+harvex health               # data-health check (zeroed-out / sharp drop)
+harvex gen-launchd          # generate a macOS launchd schedule
+harvex gen-cron             # generate a crontab line
+harvex web                  # start the read-only browse UI (needs [web])
+harvex tui                  # start the local control panel (needs [tui])
 ```
 
-## 开发
+## Development
 
 ```bash
 uv venv && uv pip install -e ".[dev]"
@@ -92,4 +89,4 @@ uv run pytest
 
 ## License
 
-MIT © Stephen Fang
+MIT

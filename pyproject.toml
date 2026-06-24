@@ -1,11 +1,11 @@
 [project]
 name = "harvex"
-version = "0.1.0"
-description = "AI 时代的数据采集基座 —— 为 AI agent 与 vibecoding 打造的零样板数据采集框架"
+version = "0.1.1"
+description = "The data-harvesting foundation for the AI era — a zero-boilerplate framework for AI agents and vibecoding"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
-authors = [{ name = "Stephen Fang", email = "qazwsx80@gmail.com" }]
+authors = [{ name = "fangxuanxin", email = "fxxfxx@live.com" }]
 keywords = [
     "data-harvesting", "scraping", "crawler", "ai-agent", "vibecoding",
     "sqlite", "pipeline", "etl", "framework", "llm",
