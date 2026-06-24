@@ -7,12 +7,12 @@ from __future__ import annotations
 
 import pytest
 
-from fxharvest import BaseSource, SourceProfile
-from fxharvest.core.pipeline import Pipeline
-from fxharvest.core.runner import run_sources
-from fxharvest.meta.metadata_db import MetadataDatabase
-from fxharvest.net.http_client import HttpClient
-from fxharvest.storage.sqlite_sink import SQLiteSink
+from harvex import BaseSource, SourceProfile
+from harvex.core.pipeline import Pipeline
+from harvex.core.runner import run_sources
+from harvex.meta.metadata_db import MetadataDatabase
+from harvex.net.http_client import HttpClient
+from harvex.storage.sqlite_sink import SQLiteSink
 
 
 class _RecordingNotifier:

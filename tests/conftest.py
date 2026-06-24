@@ -11,14 +11,14 @@ from __future__ import annotations
 import httpx
 import pytest
 
-from fxharvest.core.record import HarvestRecord
-from fxharvest.net.http_client import HttpClient
-from fxharvest.net.retry import RetryPolicy
+from harvex.core.record import HarvestRecord
+from harvex.net.http_client import HttpClient
+from harvex.net.retry import RetryPolicy
 
 
 @pytest.fixture()
 def tmp_db(tmp_path):
-    """返回临时数据库文件路径字符串（调用方可直接传给 FxDatabase 或 SQLiteSink）。"""
+    """返回临时数据库文件路径字符串（调用方可直接传给 HarvexDatabase 或 SQLiteSink）。"""
     return str(tmp_path / "test.db")
 
 
@@ -59,7 +59,7 @@ def mock_http():
     # httpx.Client 可以直接接收 transport 参数
     client = HttpClient.__new__(HttpClient)
     client._client = httpx.Client(transport=transport)
-    from fxharvest.net.retry import build_retrying
+    from harvex.net.retry import build_retrying
     client._retrying = build_retrying(policy)
     yield client
     client.close()

@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from fxharvest.core.source import SourceProfile
-from fxharvest.meta.health import check_health
-from fxharvest.meta.metadata_db import MetadataDatabase
+from harvex.core.source import SourceProfile
+from harvex.meta.health import check_health
+from harvex.meta.metadata_db import MetadataDatabase
 
 
 def _meta(tmp_path):

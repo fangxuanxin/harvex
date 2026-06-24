@@ -6,11 +6,11 @@ import textwrap
 
 import pytest
 
-from fxharvest.core.errors import ConfigError
-from fxharvest.core.registry import SourceRegistry
+from harvex.core.errors import ConfigError
+from harvex.core.registry import SourceRegistry
 
 _SRC_A = '''\
-from fxharvest import BaseSource, SourceProfile, HarvestRecord
+from harvex import BaseSource, SourceProfile, HarvestRecord
 class R(HarvestRecord):
     标题: str
 class ASource(BaseSource):
@@ -21,7 +21,7 @@ class ASource(BaseSource):
 '''
 
 _SRC_B = '''\
-from fxharvest import BaseSource, SourceProfile, HarvestRecord
+from harvex import BaseSource, SourceProfile, HarvestRecord
 class R(HarvestRecord):
     标题: str
 class BSource(BaseSource):

@@ -5,9 +5,9 @@ from __future__ import annotations
 import httpx
 import pytest
 
-from fxharvest.core.errors import FetchError
-from fxharvest.net.http_client import HttpClient
-from fxharvest.net.retry import RetryPolicy, build_retrying
+from harvex.core.errors import FetchError
+from harvex.net.http_client import HttpClient
+from harvex.net.retry import RetryPolicy, build_retrying
 
 
 def _client_with(handler, *, attempts=3) -> HttpClient:

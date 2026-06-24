@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import pytest
 
-from fxharvest.core.errors import ConfigError
-from fxharvest.config.settings import load_settings
+from harvex.core.errors import ConfigError
+from harvex.config.settings import load_settings
 
 _CONFIG = """\
 [http]

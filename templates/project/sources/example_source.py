@@ -12,7 +12,7 @@ from __future__ import annotations
 from collections.abc import Iterable, Mapping
 from typing import Any
 
-from fxharvest import BaseSource, SourceProfile
+from harvex import BaseSource, SourceProfile
 
 from fields import JobRecord  # 项目根目录的 fields.py（运行时 sources 的父目录在 sys.path 上）
 
@@ -25,7 +25,7 @@ class ExampleSource(BaseSource):
     def fetch(self) -> Any:
         # 真实场景这样拉数据（框架已注入带超时/重试的 http 客户端）：
         #   return self.ctx.http.get_json("https://example.com/api/jobs")
-        # 这里返回静态演示数据，便于 `fxharvest run` 开箱即跑：
+        # 这里返回静态演示数据，便于 `harvex run` 开箱即跑：
         return [
             {"职位名称": "后端工程师", "公司": "示例公司", "地点": "上海",
              "职位链接": "https://example.com/jobs/1", "薪资": "25k-40k"},

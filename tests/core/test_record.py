@@ -15,8 +15,8 @@ import json
 import pytest
 from pydantic import Field
 
-from fxharvest.core.record import HarvestRecord
-from fxharvest.core.errors import RecordValidationError
+from harvex.core.record import HarvestRecord
+from harvex.core.errors import RecordValidationError
 
 
 # ── 辅助子类 ────────────────────────────────────────────────

@@ -6,8 +6,8 @@ import json
 
 import httpx
 
-from fxharvest.notify.notifier import NullNotifier
-from fxharvest.notify.webhook import WebhookNotifier
+from harvex.notify.notifier import NullNotifier
+from harvex.notify.webhook import WebhookNotifier
 
 
 def test_feishu_body_构造():

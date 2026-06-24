@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from fxharvest.extras.tui.textwidth import display_width, ljust_display
+from harvex.extras.tui.textwidth import display_width, ljust_display
 
 
 def test_display_width_east_asian():
@@ -17,8 +17,8 @@ def test_ljust_display_pads_to_width():
 
 
 def test_llm_cache_hit(tmp_path):
-    from fxharvest.extras.llm.cache import TranslationCache
-    from fxharvest.extras.llm.translator import Translator
+    from harvex.extras.llm.cache import TranslationCache
+    from harvex.extras.llm.translator import Translator
 
     class _Resp:
         def __init__(self, t):
@@ -45,8 +45,8 @@ def test_browser_parse_without_playwright():
     """parse 路径不依赖 playwright，可独立验证。"""
     import re
 
-    from fxharvest import HarvestRecord, SourceProfile
-    from fxharvest.extras.browser.browser_source import BrowserSource
+    from harvex import HarvestRecord, SourceProfile
+    from harvex.extras.browser.browser_source import BrowserSource
 
     class _R(HarvestRecord):
         职位名称: str

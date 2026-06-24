@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import os
 
-from fxharvest.storage.sqlite_sink import SQLiteSink
+from harvex.storage.sqlite_sink import SQLiteSink
 
 
 def _records(cls, items):

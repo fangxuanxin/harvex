@@ -6,7 +6,7 @@
 
 from __future__ import annotations
 
-from fxharvest import HarvestRecord
+from harvex import HarvestRecord
 
 
 class JobRecord(HarvestRecord):
