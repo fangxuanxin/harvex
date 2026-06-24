@@ -2,7 +2,7 @@
 
 This project follows [Semantic Versioning](https://semver.org/).
 
-## [0.2.0] - 未发布（待审核）
+## [0.2.0] - 2026-06-24
 
 ### Added
 
@@ -68,4 +68,4 @@ This project follows [Semantic Versioning](https://semver.org/).
 
 [0.1.0]: https://github.com/fangxuanxin/harvex/releases/tag/v0.1.0
 [0.1.1]: https://github.com/fangxuanxin/harvex/releases/tag/v0.1.1
-[0.2.0]: https://github.com/fangxuanxin/harvex/compare/v0.1.1...main
+[0.2.0]: https://github.com/fangxuanxin/harvex/releases/tag/v0.2.0
